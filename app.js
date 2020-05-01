@@ -3,7 +3,7 @@ const app = express();
 const AuthRoute = require('./routes/auth');
 const TestRoute = require('./routes/test');
 
-
+app.use(express.json());
 app.use('/api/test', TestRoute);
 app.use('/api/user',  AuthRoute);
 

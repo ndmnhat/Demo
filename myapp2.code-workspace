@@ -2,9 +2,6 @@
 	"folders": [
 		{
 			"path": "."
-		},
-		{
-			"path": "..\\..\\node_passport_login.git\\trunk"
 		}
 	],
 	"settings": {}
