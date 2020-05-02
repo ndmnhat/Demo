@@ -6,6 +6,7 @@ const passport = require('passport');
 const Initialize = require('./config/passport-config');
 const cookieParser = require('cookie-parser');
 
+app.set("view engine", "ejs");
 Initialize(passport);
 app.use(passport.initialize());
 app.use(express.json());
@@ -15,4 +16,7 @@ app.use(cookieParser());
 app.use('/api/test', TestRoute);
 app.use('/api/user',  AuthRoute);
 
+app.get('/', (req,res) => {
+    res.render('index');
+})
 app.listen(3000, () => console.log('Server Up and Running'));
