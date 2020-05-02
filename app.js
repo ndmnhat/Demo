@@ -5,6 +5,7 @@ const TestRoute = require('./routes/test');
 const passport = require('passport');
 const Initialize = require('./config/passport-config');
 const cookieParser = require('cookie-parser');
+const port = process.env.PORT || 8000;
 
 app.set("view engine", "ejs");
 Initialize(passport);
@@ -19,4 +20,4 @@ app.use('/api/user',  AuthRoute);
 app.get('/', (req,res) => {
     res.render('index');
 })
-app.listen(3000, () => console.log('Server Up and Running'));
+app.listen(port, () => console.log('Server Up and Running on Port: '+port));
