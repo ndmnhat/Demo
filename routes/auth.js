@@ -46,4 +46,9 @@ router.post('/login', async (req, res) => {
 	})(req, res);
 });
 
+router.post('/logout', (req, res) => {
+	res.cookie('jwt', '');
+	res.sendStatus(200);
+});
+
 module.exports = router;
