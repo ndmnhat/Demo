@@ -8,21 +8,19 @@ const jwt = require('jsonwebtoken');
 module.exports = (passport) => {
 	passport.use(
 		new LocalStrategy(async (username, password, done) => {
-			const user = await User.findOne({ where: { username: username } });
+			const user = await User.scope('withPassword').findOne({ where: { username: username } });
 			if (user === null) {
 				return done('Invalid Username');
 			}
 			const validPass = await bcrypt.compare(password, user.Password);
 			if (!validPass) return done(null, false, { message: 'Password incorrect' });
-			return done(null, user);
-			// , async (error, result) => {
 
-			// if(!result) return done('Invalid Username');
+			//remove Password field
+			let result = user.toJSON();
+			delete result.Password;
 
-			// const validPass = await bcrypt.compare(password,result.Password);
-			// if(!validPass) return done(null,false,{message: 'Password incorrect'});
-
-			// return done(null,result);
+			console.log(result);
+			return done(null, result);
 		})
 	);
 	passport.use(

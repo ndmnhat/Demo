@@ -7,7 +7,7 @@ const passport = require('passport');
 
 router.post('/register', async (req, res) => {
 	const user = await User.findOne({ where: { Username: req.body.username } });
-	if (user) res.send('Username not available');
+	if (user) return res.send('Username not available');
 	const { error } = Validation(req.body);
 	if (error) return res.send(error.details[0].message);
 
@@ -16,22 +16,22 @@ router.post('/register', async (req, res) => {
 	hashedPassword = await bcrypt.hash(req.body.password, salt);
 
 	//Luu vao db
-	User.create({
+	const newuser = await User.create({
 		Username: req.body.username,
 		Password: hashedPassword,
 		DisplayName: req.body.displayname,
 		Email: req.body.email,
 	});
+	return res.send(newuser.UserID);
 });
 
 router.post('/login', async (req, res) => {
 	passport.authenticate('local', { session: false }, (error, user) => {
-		console.log(error);
 		if (error || !user) {
 			return res.status(400).send(error);
 		}
 
-		const payload = { userid: user.UserID };
+		const payload = { userid: user.UserID, role: user.GroupName };
 
 		req.login(payload, { session: false }, (error) => {
 			if (error) {

@@ -6,7 +6,7 @@ const Validation = (data) => {
 		username: Joi.string().min(6).max(25).required(),
 		password: Joi.string().min(6).max(25).required(),
 		displayname: Joi.string().max(255).required(),
-		email: Joi.string.email(),
+		email: Joi.string().email(),
 	});
 	return schema.validate(data);
 };
