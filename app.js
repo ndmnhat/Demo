@@ -7,21 +7,16 @@ const Initialize = require('./config/passport-config');
 const cookieParser = require('cookie-parser');
 const port = process.env.PORT || 8000;
 
-const User = require('./models/User');
+// const User = require('./models/User');
 const Group = require('./models/Group');
-const Activity = require('./models/Activity');
-const Action = require('./models/Action');
-const GroupAction = require('./models/GroupAction');
-const UserActivity = require('./models/UserActivity');
-const Product = require('./models/Product');
-const Order = require('./models/Order');
-const OrderDetail = require('./models/OrderDetail');
-const sequelize = require('./config/sequelize-config');
-
-//(async () => {
-//    await Group.create({GroupName: 'Mod'});
-//    await User.create({Username: 'abcd', Password: '123', DisplayName: '1235', Email:'1234@abc.com', GroupName: 'Mod'});
-//})();
+// const Activity = require('./models/Activity');
+// const Action = require('./models/Action');
+// const GroupAction = require('./models/GroupAction');
+// const UserActivity = require('./models/UserActivity');
+// const Product = require('./models/Product');
+// const Order = require('./models/Order');
+// const OrderDetail = require('./models/OrderDetail');
+// const sequelize = require('./config/sequelize-config');
 
 app.set('view engine', 'ejs');
 Initialize(passport);

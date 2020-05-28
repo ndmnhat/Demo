@@ -13,7 +13,7 @@ module.exports = (passport) => {
 				return done('Invalid Username');
 			}
 			const validPass = await bcrypt.compare(password, user.Password);
-			if (!validPass) return done(null, false, { message: 'Password incorrect' });
+			if (!validPass) return done('Password incorrect');
 
 			//remove Password field
 			let result = user.toJSON();

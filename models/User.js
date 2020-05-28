@@ -28,6 +28,7 @@ const User = sequelize.define(
 		},
 		GroupName: {
 			type: DataTypes.STRING,
+			defaultValue: 'User',
 		},
 	},
 	{
