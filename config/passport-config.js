@@ -34,4 +34,12 @@ module.exports = (passport) => {
 			}
 		)
 	);
+	passport.serializeUser(async (user, done) => {
+		done(null, user.UserID);
+	});
+
+	passport.deserializeUser(async (id, done) => {
+		const user = await User.findByPk(id);
+		done(null, user);
+	});
 };

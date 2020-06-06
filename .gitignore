@@ -1,3 +1,4 @@
 node_modules
 myapp2.code-workspace
 .env
+example.http
